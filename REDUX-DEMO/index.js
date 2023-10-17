@@ -1,5 +1,5 @@
 // const redux = require('redux')
-import { legacy_createStore as createStore } from 'redux'
+import { legacy_createStore as createStore, combineReducers } from 'redux'
 
 // const createStore = createStore
 
@@ -23,18 +23,26 @@ function buyIceCream() {
 
 // (previousState, action) => newState
 
-const initialState = {
-    numOfCakes: 10,
+const initialCakeState = {
+    numOfCakes: 10
+}
+const initialIceCreamState = {
     numOfIceCreams: 20
 }
 
-const reducer = (state = initialState, action) => {
+const cakeReducer = (state = initialCakeState, action) => {
     switch (action.type) {
         case 'BUY_CAKE':
             return {
                 ...state,
                 numOfCakes: state.numOfCakes - 1
             }
+        default:
+            return state
+    }
+}
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    switch (action.type) {
         case 'BUY_ICECREAM':
             return {
                 ...state,
@@ -45,8 +53,11 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-
-const store = createStore(reducer)
+const rootReducer = combineReducers({
+    cake: cakeReducer,
+    iceCream: iceCreamReducer
+})
+const store = createStore(rootReducer)
 console.log('Initial state', store.getState())
 const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
 
