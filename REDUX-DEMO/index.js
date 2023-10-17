@@ -1,5 +1,6 @@
 // const redux = require('redux')
-import { legacy_createStore as createStore, combineReducers } from 'redux'
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux'
+import logger from 'redux-logger'
 
 // const createStore = createStore
 
@@ -57,7 +58,7 @@ const rootReducer = combineReducers({
     cake: cakeReducer,
     iceCream: iceCreamReducer
 })
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger.default))
 console.log('Initial state', store.getState())
 const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
 
