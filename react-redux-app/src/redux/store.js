@@ -7,3 +7,4 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logge
 
 export default store
 
+// npm install --save redux-devtools-extension
