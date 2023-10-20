@@ -6,11 +6,14 @@ import CakeContainer from './components/CakeContainer';
 import HookCakeContainer from './components/HookCakeContainer';
 import IceCreamContainer from './components/IceCreamContainer';
 import ChocolateContainer from './components/ChocolateContainer';
+import SameItemContainer from './components/SameItemContainer';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <SameItemContainer cake />
+        <SameItemContainer />
         <CakeContainer />
         {/* <HookCakeContainer /> */}
         <IceCreamContainer />
